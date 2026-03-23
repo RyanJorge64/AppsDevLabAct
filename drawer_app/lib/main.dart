@@ -44,6 +44,7 @@ class _NavigationExampleState extends State<NavigationExample> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 199, 199, 199),
       appBar: AppBar(
@@ -96,6 +97,79 @@ class _NavigationExampleState extends State<NavigationExample> {
           ),
         ],
       ),
+      body: <Widget>[
+        /// Home page
+        Card(
+          shadowColor: Colors.transparent,
+          margin: const EdgeInsets.all(8.0),
+          child: SizedBox.expand(
+            child: Center(
+              child: Text('This is the Home page', style: theme.textTheme.titleLarge),
+            ),
+          ),
+        ),
+
+        /// Messages page
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.person_2_sharp),
+                  title: Text('Jane Doe'),
+                  subtitle: Text('Why did you get fired!?'),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: Icon(Icons.person_4_sharp),
+                  title: Text('Billy'),
+                  subtitle: Text('Boss, said you\'re fired'),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // Notifications page
+        Scaffold(
+          body: Center(
+            child: Text('This is the Notifications page', style: theme.textTheme.titleLarge),
+          ),
+        ),
+        
+        // Menu page
+        const Column(
+          children: [
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Settings'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.account_circle),
+                title: Text('Profile'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.help),
+                title: Text('Help'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Logout'),
+              ),
+            )
+          ],
+        )
+
+      ][currentPageIndex],
       drawer: Drawer(
         child: IconTheme(
           data: const IconThemeData(color: Color.fromARGB(255, 255, 255, 255)),
@@ -130,3 +204,4 @@ class _NavigationExampleState extends State<NavigationExample> {
     );
   }
 }
+
