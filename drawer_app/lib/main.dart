@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:drawer_app/pages/homePage.dart';
+import 'package:drawer_app/pages/messagesPage.dart';
+import 'package:drawer_app/pages/notifsPage.dart';
+import 'package:drawer_app/pages/menu.dart';
+import 'package:drawer_app/transitions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,9 +47,20 @@ class _NavigationExampleState extends State<NavigationExample> {
   NavigationDestinationLabelBehavior labelBehavior =
       NavigationDestinationLabelBehavior.alwaysShow;
 
+  void _onDestinationSelected(int index) {
+    setState(() {
+      currentPageIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    final List<Widget> _pages = [
+      HomePage(key: ValueKey<int>(0)),
+      MessagesPage(key: ValueKey<int>(1)),
+      NotificationsPage(key: ValueKey<int>(2)),
+      MenuPage(key: ValueKey<int>(3)),
+    ];
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 199, 199, 199),
       appBar: AppBar(
@@ -52,16 +68,17 @@ class _NavigationExampleState extends State<NavigationExample> {
         style: TextStyle(color: Colors.white),),
         backgroundColor: const Color(0xFF086CBE),
       ),
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: AppTransitions.slideTransitionBuilder,
+        child: _pages[currentPageIndex],
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentPageIndex,
+        onDestinationSelected: _onDestinationSelected, 
         backgroundColor: Color(0xFF086CBE),
         indicatorColor: const Color.fromARGB(255, 167, 167, 167).withOpacity(0.4),
         labelTextStyle: MaterialStateProperty.all(TextStyle(color: Colors.white)),
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPageIndex = index;
-          });
-        },
         destinations: const <Widget>[
           NavigationDestination(
             selectedIcon: Icon(
@@ -97,79 +114,6 @@ class _NavigationExampleState extends State<NavigationExample> {
           ),
         ],
       ),
-      body: <Widget>[
-        /// Home page
-        Card(
-          shadowColor: Colors.transparent,
-          margin: const EdgeInsets.all(8.0),
-          child: SizedBox.expand(
-            child: Center(
-              child: Text('This is the Home page', style: theme.textTheme.titleLarge),
-            ),
-          ),
-        ),
-
-        /// Messages page
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Card(
-                child: ListTile(
-                  leading: Icon(Icons.person_2_sharp),
-                  title: Text('Jane Doe'),
-                  subtitle: Text('Why did you get fired!?'),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: Icon(Icons.person_4_sharp),
-                  title: Text('Billy'),
-                  subtitle: Text('Boss, said you\'re fired'),
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        // Notifications page
-        Scaffold(
-          body: Center(
-            child: Text('This is the Notifications page', style: theme.textTheme.titleLarge),
-          ),
-        ),
-        
-        // Menu page
-        const Column(
-          children: [
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Profile'),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.help),
-                title: Text('Help'),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.logout),
-                title: Text('Logout'),
-              ),
-            )
-          ],
-        )
-
-      ][currentPageIndex],
       drawer: Drawer(
         child: IconTheme(
           data: const IconThemeData(color: Color.fromARGB(255, 255, 255, 255)),
@@ -204,4 +148,3 @@ class _NavigationExampleState extends State<NavigationExample> {
     );
   }
 }
-
