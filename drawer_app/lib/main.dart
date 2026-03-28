@@ -3,6 +3,7 @@ import 'package:drawer_app/pages/homePage.dart';
 import 'package:drawer_app/pages/messagesPage.dart';
 import 'package:drawer_app/pages/notifsPage.dart';
 import 'package:drawer_app/pages/menu.dart';
+import 'package:drawer_app/pages/userProfile.dart';
 import 'package:drawer_app/transitions.dart';
 
 void main() {
@@ -16,10 +17,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Drawer & NavBar',
+      
       theme: ThemeData(
         primaryColor: Colors.lightBlueAccent,
       ),
+      routes: {
+        '/profile': (context) => const Profile(),
+      },
       home: const NavigationExample(),
     );
   }
@@ -44,14 +48,34 @@ class NavigationExample extends StatefulWidget {
 
 class _NavigationExampleState extends State<NavigationExample> {
   int currentPageIndex = 0;
+    late final PageController _pageController;
+
+    @override
+    void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+    @override
+      void dispose() {
+      _pageController.dispose();
+      super.dispose();
+  }
+  
   NavigationDestinationLabelBehavior labelBehavior =
       NavigationDestinationLabelBehavior.alwaysShow;
 
-  void _onDestinationSelected(int index) {
-    setState(() {
-      currentPageIndex = index;
-    });
-  }
+void _onDestinationSelected(int index) {
+  setState(() {
+    currentPageIndex = index;
+  });
+
+  _pageController.animateToPage(
+    index,
+    duration: const Duration(milliseconds: 500),
+    curve: Curves.easeInOut,
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -65,13 +89,28 @@ class _NavigationExampleState extends State<NavigationExample> {
       backgroundColor: const Color.fromARGB(255, 199, 199, 199),
       appBar: AppBar(
         title: const Text('Drawer & NavBar',
-        style: TextStyle(color: Colors.white),),
+        style: TextStyle(color: Colors.white, 
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Roboto'),
+        ),
         backgroundColor: const Color(0xFF086CBE),
       ),
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
-        transitionBuilder: AppTransitions.slideTransitionBuilder,
-        child: _pages[currentPageIndex],
+      body: PageView(
+        controller: _pageController,
+        physics: BouncingScrollPhysics(),
+        //
+        onPageChanged: (index) {
+        setState(() {
+        currentPageIndex = index;
+      });
+    },
+
+        children: const [
+          HomePage(),
+          MessagesPage(),
+          NotificationsPage(),
+          MenuPage(),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentPageIndex,
@@ -91,9 +130,9 @@ class _NavigationExampleState extends State<NavigationExample> {
           NavigationDestination(
             selectedIcon: Icon(Icons.mail,
             color: Colors.white,),
-            icon: Icon(
+            icon: Badge(label: Text('1'), child: Icon(
             Icons.mail_outline,
-            color: Colors.white,),
+            color: Colors.white,)),
             label: 'Messages'),
           NavigationDestination(
             selectedIcon: Icon(

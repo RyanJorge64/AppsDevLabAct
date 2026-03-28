@@ -15,7 +15,11 @@ class MessagesPage extends StatelessWidget {
                 child: ListTile(
                   leading: Icon(Icons.person_2_sharp),
                   title: Text('Jane Doe'),
-                  subtitle: Text('Why did you get fired!?'),
+                  subtitle: Text('Why did you get fired!?',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold
+                  )
+                  ),
                 ),
               ),
               Card(

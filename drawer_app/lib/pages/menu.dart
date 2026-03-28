@@ -6,9 +6,9 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Column(
+      body: Column(
           children: [
-            Card(
+            const Card(
               child: ListTile(
                 leading: Icon(Icons.settings),
                 title: Text('Settings'),
@@ -16,17 +16,20 @@ class MenuPage extends StatelessWidget {
             ),
             Card(
               child: ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Profile'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/profile');
+                },
+                leading: const Icon(Icons.account_circle),
+                title: const Text('Profile'),
               ),
             ),
-            Card(
+            const Card(
               child: ListTile(
                 leading: Icon(Icons.help),
                 title: Text('Help'),
               ),
             ),
-            Card(
+            const Card(
               child: ListTile(
                 leading: Icon(Icons.logout),
                 title: Text('Logout'),
