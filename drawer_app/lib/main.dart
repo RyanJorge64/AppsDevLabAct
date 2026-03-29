@@ -7,6 +7,7 @@ import 'package:drawer_app/pages/notifsPage.dart';
 import 'package:drawer_app/pages/menu.dart';
 import 'package:drawer_app/pages/settings.dart';
 import 'package:drawer_app/pages/userProfile.dart';
+import 'drawerPages/Assignments.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -53,6 +54,7 @@ class _MyAppState extends State<MyApp> {
               isDarkMode: _themeMode == ThemeMode.dark,
               onDarkModeChanged: _setDarkMode,
             ),
+        '/Assignments': (context) => const AnimationsDemoPage(),
       },
       home: const NavigationExample(),
     );
