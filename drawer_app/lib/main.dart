@@ -109,7 +109,7 @@ class _NavigationExampleState extends State<NavigationExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 199, 199, 199),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Drawer & NavBar',
@@ -146,3 +146,5 @@ class _NavigationExampleState extends State<NavigationExample> {
     );
   }
 }
+
+

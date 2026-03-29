@@ -17,13 +17,13 @@ class HomePage extends StatelessWidget {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         'Welcome back',
-                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.6)),
                       ),
-                      SizedBox(height: 8),
-                      Text(
+                      const SizedBox(height: 8),
+                      const Text(
                         'John Doe',
                         style: TextStyle(
                           fontSize: 28,
@@ -145,24 +145,31 @@ class _StatusChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: Colors.blue.shade50,
+          color: theme.colorScheme.surfaceVariant,
           borderRadius: BorderRadius.circular(14),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(icon, color: Colors.blue.shade800, size: 20),
+            Icon(icon,
+                color: theme.colorScheme.primary,
+                size: 20),
             const SizedBox(height: 12),
             Text(
               value,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: theme.textTheme.titleLarge,
             ),
             const SizedBox(height: 6),
-            Text(label, style: const TextStyle(color: Colors.black54)),
+            Text(
+              label,
+              style: theme.textTheme.bodyMedium,
+            ),
           ],
         ),
       ),
