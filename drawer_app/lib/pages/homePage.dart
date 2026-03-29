@@ -40,9 +40,9 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Card(
-                elevation: 3,
+                elevation: 1,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(1),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),
@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       const Text(
-                        'You have 3 new notifications and 5 new messages waiting.',
+                        'You have 3 new notifications and 1 new messages waiting.',
                         style: TextStyle(fontSize: 16),
                       ),
                       const SizedBox(height: 20),

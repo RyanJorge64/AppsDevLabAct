@@ -7,12 +7,15 @@ class MessagesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: 
-      const Padding(
-          padding: EdgeInsets.all(8.0),
+      Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
               Card(
-                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(1),
+                ),
+                child: const ListTile(
                   leading: Icon(Icons.person_2_sharp),
                   title: Text('Jane Doe'),
                   subtitle: Text('Why did you get fired!?',
@@ -23,7 +26,10 @@ class MessagesPage extends StatelessWidget {
                 ),
               ),
               Card(
-                child: ListTile(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(1),
+                ),
+                child: const ListTile(
                   leading: Icon(Icons.person_4_sharp),
                   title: Text('Billy'),
                   subtitle: Text('Boss, said you\'re fired'),

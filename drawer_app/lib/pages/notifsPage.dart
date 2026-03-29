@@ -18,9 +18,9 @@ class NotificationsPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Card(
-                elevation: 3,
+                elevation: 1,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(1),
                 ),
                 child: const ListTile(
                   leading: Icon(Icons.notifications_active),
@@ -30,9 +30,9 @@ class NotificationsPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Card(
-                elevation: 3,
+                elevation: 1,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(1),
                 ),
                 child: const ListTile(
                   leading: Icon(Icons.calendar_today),
@@ -42,9 +42,9 @@ class NotificationsPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Card(
-                elevation: 3,
+                elevation: 1,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(1),
                 ),
                 child: const ListTile(
                   leading: Icon(Icons.check_circle),

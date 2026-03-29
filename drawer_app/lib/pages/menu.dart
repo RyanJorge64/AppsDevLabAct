@@ -8,10 +8,13 @@ class MenuPage extends StatelessWidget {
     return Scaffold(
       body: Column(
           children: [
-            const Card(
+            Card(
               child: ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/settings');
+                },
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
               ),
             ),
             Card(
