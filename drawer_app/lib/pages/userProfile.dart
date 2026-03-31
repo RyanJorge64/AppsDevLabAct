@@ -155,7 +155,7 @@ Widget _buildAbout() {
       Card(
         child: ListTile(
           title: Text('Bio'),
-          subtitle: Text('Aspiring mobile developer'),
+          subtitle: Text('Flutter is so hard, bro'),
         ),
       ),
     ],
