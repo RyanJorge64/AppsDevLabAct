@@ -7,7 +7,8 @@ import 'package:drawer_app/pages/notifsPage.dart';
 import 'package:drawer_app/pages/menu.dart';
 import 'package:drawer_app/pages/settings.dart';
 import 'package:drawer_app/pages/userProfile.dart';
-import 'drawerPages/Assignments.dart'; 
+import 'drawerPages/Assignments.dart';
+import 'drawerPages/handsOnAct1.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -55,6 +56,7 @@ class _MyAppState extends State<MyApp> {
               onDarkModeChanged: _setDarkMode,
             ),
         '/Assignments': (context) => const AnimationsDemoPage(),
+        '/handsOnAct1': (context) => const UserInputTest(),
       },
       home: const NavigationExample(),
     );

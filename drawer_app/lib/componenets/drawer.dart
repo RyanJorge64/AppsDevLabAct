@@ -22,9 +22,10 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              title: const Text('Item 2'),
+              title: const Text('Hands-on Activity 1'),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.pushNamed(context, '/handsOnAct1');
               },
             ),
             ListTile(
