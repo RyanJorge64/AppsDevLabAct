@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
               onDarkModeChanged: _setDarkMode,
             ),
         '/Assignments': (context) => const AnimationsDemoPage(),
-        '/handsOnAct1': (context) => const UserInputTest(),
+        '/handsOnAct1': (context) => const UserInput(),
       },
       home: const NavigationExample(),
     );
